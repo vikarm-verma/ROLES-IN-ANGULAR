@@ -1,0 +1,31 @@
+
+<!-- tried to make fixed position navbar  -->
+<nav class="navbar navbar-expand-md  " style="background:transparent; position: fixed;
+top: 0;width: 100%;margin-bottom:auto;">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/home">The NewBeginner Pvt Ltd</a>
+        <!-- a button which occurs when you resize page -->
+        <button style="background-color:dimgrey;" type="button" class="navbar-toggler" data-toggle="collapse"
+            (click)="toggleNavbar()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbar" class="navbar-collapse collapse " [ngClass]="{ 'show': navbarOpen }">
+            <div class="nav navbar-nav ml-auto" style="font-size: large;">
+                <a class="nav-item nav-link" routerLink="/home">Home </a>
+                <a class="nav-item nav-link" routerLink="/contactus">Contact</a>
+                <a class="nav-item nav-link" *ngIf="!isUserLoggedIn" routerLink="/register">Register</a>
+                <a class="nav-item nav-link" *ngIf="isAdminRole" routerLink="/admin">{{role}}</a>
+                <a class="nav-item nav-link" *ngIf="!isAdminRole" routerLink="/user" id="dropdown01">{{role}}</a>
+                <a class="nav-item nav-link" *ngIf="!isUserLoggedIn" routerLink="/login">Login</a>
+                <button class="btn" *ngIf="(!isAdminRole || isAdminRole) && isUserLoggedIn" routerLink="/profile"
+                    style="font-style: italic;border-radius: 20px;padding: 3px;background-color: #e1f3f7;">
+                    <img class="rounded-circle" *ngIf="isUserLoggedIn" data-holder-rendered="true" 
+                    alt="click here" style="width:50px;height:50px;" [src]=imageUrl/>
+                    <b style="margin-left:4px; color: black;font-size: 15;">{{userName}}</b>
+                </button>
+                <a class="nav-item nav-link" *ngIf="isUserLoggedIn" routerLink="/login" (click)="logout()">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<br /><br /><br /><br /><br /><br />
